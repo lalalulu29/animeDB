@@ -45,4 +45,14 @@ public class RestMainController {
         }
         return mapperAnime.toFormAnime(anime).toString();
     }
+
+    @RequestMapping(value = "anime_name/{name}", method = RequestMethod.GET)
+    public String findAnimeByEnName(@PathVariable("name") String name) {
+        log.info(String.format("Was tried find anime, with name: %s",name));
+        List<Anime> animeList = dao.getAnimeByEnName(name);
+        if (animeList.isEmpty()) {
+            return null;
+        }
+        return mapperAnime.toListFormAnime(animeList).toString();
+    }
 }

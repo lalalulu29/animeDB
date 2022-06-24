@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+import org.hibernate.query.QueryProducer;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.service.DAO;
@@ -69,7 +71,7 @@ public class DAOImpl implements DAO {
     @Override
     public Anime getAnime(Integer id) {
         log.info(String.format("Start search anime from DB with id: %d", id));
-        Transaction  transaction = null;
+        Transaction transaction = null;
         try(Session session = factory.openSession()) {
             transaction = session.beginTransaction();
             Anime anime = session.get(Anime.class, id);
@@ -84,5 +86,20 @@ public class DAOImpl implements DAO {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List getAnimeByEnName(String name) {
+        log.info(String.format("Start search anime with english name: %s", name));
+        try(Session session = factory.openSession()) {
+            String hql = "from Anime where enAnimeName = ?1";
+            Query producer = session.createQuery(hql);
+            producer.setParameter(1, name);
+            return producer.getResultList();
+        } catch (HibernateException exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return null;
+        }
     }
 }

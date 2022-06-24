@@ -11,4 +11,5 @@ public interface DAO {
     void addListAnime(List<Anime> animes);
     void delAnime(Integer id);
     Anime getAnime(Integer id);
+    List<Anime> getAnimeByEnName(String name);
 }
