@@ -9,7 +9,6 @@ import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.service.DAO;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -19,14 +18,14 @@ public class DAOImpl implements DAO {
     private final SessionFactory factory = new Configuration().configure().addAnnotatedClass(Anime.class).buildSessionFactory();
 
     public void addAnime(Anime anime) {
-        log.info("Start write anime to DB");
+        log.info(String.format("Start write anime with name: %s to DB",anime.getEnAnimeName()));
         Transaction transaction = null;
         try (Session session = factory.openSession()) {
 
             transaction = session.beginTransaction();
             session.save(anime);
             transaction.commit();
-            log.info("Was wrote anime to DB");
+            log.info(String.format("Was wrote anime with name: %s to DB",anime.getEnAnimeName()));
         } catch (HibernateException exception) {
             if (transaction != null) {
                 transaction.rollback();
@@ -37,24 +36,24 @@ public class DAOImpl implements DAO {
     }
 
     @Override
-    public void addAnimes(List<Anime> animes) {
-        log.info("Start write animes to DB");
-        for (Anime anime : animes) {
+    public void addListAnime(List<Anime> listAnime) {
+        log.info("Start write list anime to DB");
+        for (Anime anime : listAnime) {
             addAnime(anime);
         }
-        log.info("Was wrote animes to DB");
+        log.info("Was wrote list anime to DB");
     }
 
     @Override
     public void delAnime(Integer id) {
-        log.info("Start delete anime from DB");
+        log.info(String.format("Start delete anime from DB with id: %d",id));
         Transaction  transaction = null;
         try(Session session = factory.openSession()) {
             transaction = session.beginTransaction();
             Anime anime = session.get(Anime.class, id);
             session.delete(anime);
             transaction.commit();
-            log.info("Was deleted anime by id");
+            log.info(String.format("Was deleted anime by id: %d",id));
         } catch (HibernateException exception){
             if (transaction != null) {
                 transaction.rollback();
@@ -69,13 +68,13 @@ public class DAOImpl implements DAO {
 
     @Override
     public Anime getAnime(Integer id) {
-        log.info("Start search anime from DB");
+        log.info(String.format("Start search anime from DB with id: %d", id));
         Transaction  transaction = null;
         try(Session session = factory.openSession()) {
             transaction = session.beginTransaction();
             Anime anime = session.get(Anime.class, id);
             transaction.commit();
-            log.info("Was find anime by id");
+            log.info(String.format("Was find anime by id: %d", id));
             return anime;
         } catch (HibernateException exception) {
             if (transaction != null) {

@@ -19,7 +19,7 @@ public class MapperAnimeImpl implements MapperAnime {
 
     @Override
     public Anime toAnime(FormAnime anime) {
-        log.info("Start mapping anime from form anime");
+        log.info(String.format("Start mapping anime from form anime with name: %s", anime.getEnAnimeName()));
         return new Anime(null,
                 anime.getEnAnimeName(),
                 anime.getRuAnimeName(),
@@ -35,7 +35,7 @@ public class MapperAnimeImpl implements MapperAnime {
 
     @Override
     public FormAnime toFormAnime(Anime anime) {
-        log.info("Start mapping form anime from anime");
+        log.info(String.format("Start mapping form anime from anime with name: %s", anime.getEnAnimeName()));
         return new FormAnime().toBuilder()
                 .enAnimeName(anime.getEnAnimeName())
                 .ruAnimeName(anime.getRuAnimeName())
@@ -50,22 +50,23 @@ public class MapperAnimeImpl implements MapperAnime {
     }
 
     @Override
-    public List<Anime> toAnimes(List<FormAnime> animes) {
+    public List<Anime> toListAnime(List<FormAnime> listAnime) {
+
         log.info("Start mapping list forms anime from anime");
-        List<Anime> readyAnimes = new ArrayList<>();
-        for (FormAnime anime : animes) {
-            readyAnimes.add(toAnime(anime));
+        List<Anime> readyListAnime = new ArrayList<>();
+        for (FormAnime anime : listAnime) {
+            readyListAnime.add(toAnime(anime));
         }
-        return readyAnimes;
+        return readyListAnime;
     }
 
     @Override
-    public List<FormAnime> toFormAnimes(List<Anime> animes) {
+    public List<FormAnime> toListFormAnime(List<Anime> listAnime) {
         log.info("Start mapping list anime from forms anime");
-        List<FormAnime> readyFormAnimes = new ArrayList<>();
-        for (Anime anime : animes) {
-            readyFormAnimes.add(toFormAnime(anime));
+        List<FormAnime> readyListFormAnime = new ArrayList<>();
+        for (Anime anime : listAnime) {
+            readyListFormAnime.add(toFormAnime(anime));
         }
-        return readyFormAnimes;
+        return readyListFormAnime;
     }
 }

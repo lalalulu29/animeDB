@@ -8,6 +8,6 @@ import java.util.List;
 public interface MapperAnime {
     Anime toAnime(FormAnime anime);
     FormAnime toFormAnime(Anime anime);
-    List<Anime> toAnimes(List<FormAnime> animes);
-    List<FormAnime> toFormAnimes(List<Anime> animes);
+    List<Anime> toListAnime(List<FormAnime> animes);
+    List<FormAnime> toListFormAnime(List<Anime> animes);
 }

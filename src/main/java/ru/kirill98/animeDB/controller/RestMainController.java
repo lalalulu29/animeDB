@@ -24,10 +24,10 @@ public class RestMainController {
         dao.addAnime(mapperAnime.toAnime(formAnime));
     }
 
-    @RequestMapping(value = "add_animes", method = RequestMethod.POST)
-    public void getAnimes(@RequestBody List<FormAnime> formAnimes) {
-        log.info("Was get animes");
-        dao.addAnimes(mapperAnime.toAnimes(formAnimes));
+    @RequestMapping(value = "add_list_anime", method = RequestMethod.POST)
+    public void getListAnime(@RequestBody List<FormAnime> listFormAnime) {
+        log.info("Was get list anime");
+        dao.addListAnime(mapperAnime.toListAnime(listFormAnime));
     }
 
     @RequestMapping(value = "del_anime/{id}", method = RequestMethod.GET)
