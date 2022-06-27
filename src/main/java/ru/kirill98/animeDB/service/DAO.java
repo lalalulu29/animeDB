@@ -10,6 +10,6 @@ public interface DAO {
     void addAnime(Anime anime);
     void addListAnime(List<Anime> animes);
     void delAnime(Integer id);
-    Anime getAnime(Integer id);
+    Anime getAnimeById(Integer id);
     List<Anime> getAnimeByEnName(String name);
 }

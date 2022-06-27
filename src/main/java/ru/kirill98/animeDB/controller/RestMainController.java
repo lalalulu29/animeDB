@@ -39,7 +39,7 @@ public class RestMainController {
     @RequestMapping(value = "find_anime/{id}", method = RequestMethod.GET)
     public String findAnime(@PathVariable(name = "id") Integer id) {
         log.info(String.format("Was tried find anime, with id: %d", id));
-        Anime anime = dao.getAnime(id);
+        Anime anime = dao.getAnimeById(id);
         if(anime == null) {
             return "Anime not found";
         }
@@ -48,6 +48,10 @@ public class RestMainController {
 
     @RequestMapping(value = "anime_name/{name}", method = RequestMethod.GET)
     public String findAnimeByEnName(@PathVariable("name") String name) {
+        if(name.length() < 3) {
+            log.info(String.format("Name: `%s` has %d symbols. System cant find this name", name, name.length()));
+            return "So short name";
+        }
         log.info(String.format("Was tried find anime, with name: %s",name));
         List<Anime> animeList = dao.getAnimeByEnName(name);
         if (animeList.isEmpty()) {
