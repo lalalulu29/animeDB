@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.web.bind.annotation.*;
 import ru.kirill98.animeDB.entity.Anime;
-import ru.kirill98.animeDB.entity.FormAnime;
+import ru.kirill98.animeDB.entity.dto.FormAnime;
 import ru.kirill98.animeDB.service.DAO;
 import ru.kirill98.animeDB.service.MapperAnime;
 
@@ -55,7 +55,7 @@ public class RestMainController {
         log.info(String.format("Was tried find anime, with name: %s",name));
         List<Anime> animeList = dao.getAnimeByEnName(name);
         if (animeList.isEmpty()) {
-            return null;
+            return "Anime not found";
         }
         return mapperAnime.toListFormAnime(animeList).toString();
     }
