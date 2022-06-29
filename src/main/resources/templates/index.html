@@ -12,16 +12,6 @@
 <br>
 <br>
 
-<div class="in_line">
-    <input type="button" value="<< Назад" id="back_button" onclick="backToPage()">
-
-    <p th:text="${count_page}" id="page"></p>
-    <p>/</p>
-    <p th:text="${max_page}" id="max_page"></p>
-
-    <input type="button" value="Вперед >>" id="next_button" onclick="nextToPage()">
-</div>
-
 <table border="1">
     <tr>
         <th>English name</th>
@@ -44,6 +34,16 @@
         <td th:utext="${anime.started}">...</td>
     </tr>
 </table>
+
+<div class="in_line">
+    <input type="button" value="<< Назад" id="back_button" onclick="backToPage()">
+
+    <p th:text="${count_page}" id="page"></p>
+    <p>/</p>
+    <p th:text="${max_page}" id="max_page"></p>
+
+    <input type="button" value="Вперед >>" id="next_button" onclick="nextToPage()">
+</div>
 
 
 </body>
