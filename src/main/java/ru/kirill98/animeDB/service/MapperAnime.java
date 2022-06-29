@@ -1,7 +1,7 @@
 package ru.kirill98.animeDB.service;
 
 import ru.kirill98.animeDB.entity.Anime;
-import ru.kirill98.animeDB.entity.FormAnime;
+import ru.kirill98.animeDB.entity.dto.FormAnime;
 
 import java.util.List;
 

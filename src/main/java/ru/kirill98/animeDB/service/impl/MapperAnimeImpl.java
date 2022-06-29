@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
-import ru.kirill98.animeDB.entity.FormAnime;
+import ru.kirill98.animeDB.entity.dto.FormAnime;
 import ru.kirill98.animeDB.service.MapperAnime;
 
 import java.util.ArrayList;
