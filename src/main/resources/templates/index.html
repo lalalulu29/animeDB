@@ -2,17 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Anime list</title>
 
     <script th:src="@{/js/main.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}">
+    <link rel="icon" type="image/gif/png" th:href="@{icons/icon.svg}">
 </head>
+
 <body>
 <H1>Hi! This's a Web site with info about anime!</H1>
-<br>
-<br>
+    <br>
+    <br>
 
 <table border="1">
+    <tr>
+        <th><input type="text" id="enNameTF"></th>
+        <th><input type="text" id="ruNameTF"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
     <tr>
         <th>English name</th>
         <th>Russian name</th>

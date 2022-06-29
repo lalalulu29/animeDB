@@ -23,29 +23,24 @@ public class MainController {
     private final MapperAnime mapperAnime;
 
     @Value("${anime.maxInOnePage}")
-    private Long maxInOnePage;
+    private Integer maxInOnePage;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getMainView(
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
             Model model) {
         log.info("Was got page with all anime");
-        if(page == 0) {
-            page = 1;
-        }
         Long allAnimeCount = dao.countAnime();
         int maxPage = (int) ((double)allAnimeCount / maxInOnePage);
         model.addAttribute("max_page", maxPage);
         model.addAttribute("count_page", page);
         List<Anime> listAnime;
         if(page == 1) {
-            listAnime = dao.getAnimeByRangeId(1, 10);
+            listAnime = dao.getAnimeByRangeId(1, maxInOnePage);
         } else if(page == maxPage) {
-            System.out.println("Start value: " + (page) * 10 + " and end value: " + Math.toIntExact(allAnimeCount));
-            listAnime = dao.getAnimeByRangeId((page) * 10, Math.toIntExact(allAnimeCount));
+            listAnime = dao.getAnimeByRangeId((page) * maxInOnePage, Math.toIntExact(allAnimeCount));
         } else {
-            System.out.println("Start value: " + page * 10 + " and end value: " + (page * 10 + 9));
-            listAnime = dao.getAnimeByRangeId(page * 10, page * 10 + 9);
+            listAnime = dao.getAnimeByRangeId(page * maxInOnePage, page * maxInOnePage + maxInOnePage - 1);
         }
         List<FormAnime> listFormAnime = mapperAnime.toListFormAnime(listAnime);
         model.addAttribute("listAnime", listFormAnime);
