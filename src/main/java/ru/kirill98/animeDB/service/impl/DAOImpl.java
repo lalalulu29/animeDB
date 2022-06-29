@@ -18,6 +18,20 @@ import java.util.List;
 public class DAOImpl implements DAO {
     private final SessionFactory factory = new Configuration().configure().addAnnotatedClass(Anime.class).buildSessionFactory();
 
+    @Override
+    public List<Anime> getAllAnime() {
+        log.info("Start get all anime");
+        try(Session session = factory.openSession()) {
+            String hql = "from Anime";
+            Query query = session.createQuery(hql);
+            return query.getResultList();
+        } catch (HibernateException exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
     public void addAnime(Anime anime) {
         log.info(String.format("Start write anime with name: %s to DB",anime.getEnAnimeName()));
         Transaction transaction = null;
@@ -88,7 +102,7 @@ public class DAOImpl implements DAO {
     }
 
     @Override
-    public List getAnimeByEnName(String name) {
+    public List<Anime> getAnimeByEnName(String name) {
         log.info(String.format("Start search anime with english name: %s", name));
         try(Session session = factory.openSession()) {
             String hql = "from Anime where enAnimeName like ?1";
@@ -100,5 +114,38 @@ public class DAOImpl implements DAO {
             exception.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Long countAnime() {
+        log.info("Start count anime");
+        try(Session session = factory.openSession()) {
+            String hql = "select count(*) from Anime";
+            Query producer = session.createQuery(hql);
+            return (Long) producer.getResultList().get(0);
+        } catch (HibernateException exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return 0L;
+        }
+    }
+
+    @Override
+    public List<Anime> getAnimeByRangeId(
+            Integer startValue,
+            Integer finishValue) {
+        log.info(String.format("Start search anime from DB with start id: %d and end id: %d", startValue, finishValue));
+        try(Session session = factory.openSession()) {
+            String hql = "from Anime where id between ?1 and ?2";
+            Query producer = session.createQuery(hql);
+            producer.setParameter(1, startValue);
+            producer.setParameter(2, finishValue);
+            return producer.getResultList();
+        } catch (HibernateException exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return null;
+        }
+
     }
 }
