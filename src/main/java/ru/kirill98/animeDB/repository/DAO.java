@@ -1,4 +1,4 @@
-package ru.kirill98.animeDB.service;
+package ru.kirill98.animeDB.repository;
 
 
 import ru.kirill98.animeDB.entity.Anime;
@@ -14,4 +14,6 @@ public interface DAO {
     List<Anime> getAnimeByEnName(String name);
     Long countAnime();
     List<Anime> getAnimeByRangeId(Integer startValue, Integer finishValue);
+
+    List<Log> getAllLogs();
 }

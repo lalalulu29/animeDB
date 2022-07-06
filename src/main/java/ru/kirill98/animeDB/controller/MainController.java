@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.entity.dto.FormAnime;
-import ru.kirill98.animeDB.service.DAO;
-import ru.kirill98.animeDB.service.MapperAnime;
+import ru.kirill98.animeDB.repository.DAO;
+import ru.kirill98.animeDB.repository.MapperAnime;
 
 import java.util.List;
 

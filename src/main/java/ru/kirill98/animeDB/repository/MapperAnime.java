@@ -1,4 +1,4 @@
-package ru.kirill98.animeDB.service;
+package ru.kirill98.animeDB.repository;
 
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.entity.dto.FormAnime;

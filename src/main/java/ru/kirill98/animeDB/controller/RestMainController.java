@@ -6,8 +6,8 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.web.bind.annotation.*;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.entity.dto.FormAnime;
-import ru.kirill98.animeDB.service.DAO;
-import ru.kirill98.animeDB.service.MapperAnime;
+import ru.kirill98.animeDB.repository.DAO;
+import ru.kirill98.animeDB.repository.MapperAnime;
 
 import java.util.List;
 
@@ -58,5 +58,12 @@ public class RestMainController {
             return "Anime not found";
         }
         return mapperAnime.toListFormAnime(animeList).toString();
+    }
+
+    @RequestMapping(value = "/logs", method = RequestMethod.GET)
+    public void getLogs() {
+        log.info("Was tried get all logs");
+        List<Log> logs = dao.getAllLogs();
+        logs.forEach(System.out::println);
     }
 }

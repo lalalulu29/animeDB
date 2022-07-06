@@ -1,4 +1,4 @@
-package ru.kirill98.animeDB.service.impl;
+package ru.kirill98.animeDB.repository.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
-import ru.kirill98.animeDB.service.DAO;
+import ru.kirill98.animeDB.repository.DAO;
 
 import java.util.List;
 
@@ -148,4 +148,21 @@ public class DAOImpl implements DAO {
         }
 
     }
+
+    @Override
+    public List<Log> getAllLogs() {
+        log.info("Start get all logs");
+
+        try(Session session = factory.openSession()) {
+            String hql = "from Log";
+            Query query = session.createQuery(hql);
+            query.getResultList().forEach(System.out::println);
+            return query.getResultList();
+        } catch (HibernateException exception) {
+            log.error(exception.getMessage());
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
 }
