@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
+import ru.kirill98.animeDB.entity.Log;
 import ru.kirill98.animeDB.entity.dto.FormAnime;
+import ru.kirill98.animeDB.entity.dto.FormLog;
 import ru.kirill98.animeDB.repository.MapperAnime;
 
 import java.util.ArrayList;
@@ -69,4 +71,5 @@ public class MapperAnimeImpl implements MapperAnime {
         }
         return readyListFormAnime;
     }
+
 }

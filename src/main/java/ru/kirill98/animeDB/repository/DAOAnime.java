@@ -2,10 +2,11 @@ package ru.kirill98.animeDB.repository;
 
 
 import ru.kirill98.animeDB.entity.Anime;
+import ru.kirill98.animeDB.entity.Log;
 
 import java.util.List;
 
-public interface DAO {
+public interface DAOAnime {
     List<Anime> getAllAnime();
     void addAnime(Anime anime);
     void addListAnime(List<Anime> animes);
@@ -15,5 +16,4 @@ public interface DAO {
     Long countAnime();
     List<Anime> getAnimeByRangeId(Integer startValue, Integer finishValue);
 
-    List<Log> getAllLogs();
 }
