@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.repository.DAOAnime;
 import ru.kirill98.animeDB.repository.HibernateFactory;
-//import org.hibernate.query.Query;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
