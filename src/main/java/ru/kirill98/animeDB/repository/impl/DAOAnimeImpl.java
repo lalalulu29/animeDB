@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.repository.DAOAnime;
 import ru.kirill98.animeDB.repository.HibernateFactory;
+//import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -136,10 +137,10 @@ public class DAOAnimeImpl implements DAOAnime {
             Integer finishValue) {
         log.info(String.format("Start search anime from DB with start id: %d and end id: %d", startValue, finishValue));
         try(Session session = HibernateFactory.getSessionFactory().openSession()) {
-            String hql = "from Anime where id between ?1 and ?2";
+            String hql = "from Anime where id between :startSearchIndex and :endSearchIndex";
             Query producer = session.createQuery(hql);
-            producer.setParameter(1, startValue);
-            producer.setParameter(2, finishValue);
+            producer.setParameter("startSearchIndex", startValue);
+            producer.setParameter("endSearchIndex", finishValue);
             return producer.getResultList();
         } catch (HibernateException exception) {
             log.error(exception.getMessage());
