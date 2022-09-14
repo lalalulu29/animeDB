@@ -20,7 +20,7 @@
         <property name="show_sql">true</property>
 
 
-        <mapping resource="Anime.hbm.xml"/>
+        <mapping class="ru.kirill98.animeDB.entity.Anime"/>
 
     </session-factory>
 </hibernate-configuration>

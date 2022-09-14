@@ -6,10 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
 @Builder(toBuilder = true)
@@ -22,4 +18,16 @@ public class FormLog {
     private String logger;
     private String level;
     private String message;
+
+    @Override
+    public String toString() {
+
+        return "{" +
+                "\"id\": \"" + getId() + "\"," +
+                "\"date\": \"" + getDate() + "\"," +
+                "\"logger\": \"" + getLogger() + "\"," +
+                "\"level\": \"" + getLevel() + "\"," +
+                "\"message\": \"" + getMessage() +
+                "}";
+    }
 }

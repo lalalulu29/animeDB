@@ -38,9 +38,9 @@ public class MainController {
         if(page == 1) {
             listAnime = dao.getAnimeByRangeId(1, maxInOnePage);
         } else if(page == maxPage) {
-            listAnime = dao.getAnimeByRangeId((page) * maxInOnePage, Math.toIntExact(allAnimeCount));
+            listAnime = dao.getAnimeByRangeId(page * maxInOnePage + 1, Math.toIntExact(allAnimeCount));
         } else {
-            listAnime = dao.getAnimeByRangeId(page * maxInOnePage, page * maxInOnePage + maxInOnePage - 1);
+            listAnime = dao.getAnimeByRangeId(page * maxInOnePage + 1, page * maxInOnePage + maxInOnePage);
         }
         List<FormAnime> listFormAnime = mapperAnime.toListFormAnime(listAnime);
         model.addAttribute("listAnime", listFormAnime);

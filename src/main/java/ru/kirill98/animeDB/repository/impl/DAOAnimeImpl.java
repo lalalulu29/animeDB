@@ -3,7 +3,6 @@ package ru.kirill98.animeDB.repository.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.repository.DAOAnime;
