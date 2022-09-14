@@ -2,27 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Anime list</title>
 
     <script th:src="@{/js/main.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{css/main.css}">
+    <link rel="icon" type="image/gif/png" th:href="@{icons/icon.svg}">
 </head>
+
 <body>
 <H1>Hi! This's a Web site with info about anime!</H1>
-<br>
-<br>
-
-<div class="in_line">
-    <input type="button" value="<< Назад" id="back_button" onclick="backToPage()">
-
-    <p th:text="${count_page}" id="page"></p>
-    <p>/</p>
-    <p th:text="${max_page}" id="max_page"></p>
-
-    <input type="button" value="Вперед >>" id="next_button" onclick="nextToPage()">
-</div>
+    <br>
+    <br>
 
 <table border="1">
+    <tr>
+        <th><input type="text" id="enNameTF"></th>
+        <th><input type="text" id="ruNameTF"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
     <tr>
         <th>English name</th>
         <th>Russian name</th>
@@ -44,6 +46,16 @@
         <td th:utext="${anime.started}">...</td>
     </tr>
 </table>
+
+<div class="in_line">
+    <input type="button" value="<< Назад" id="back_button" onclick="backToPage()">
+
+    <p th:text="${count_page}" id="page"></p>
+    <p>/</p>
+    <p th:text="${max_page}" id="max_page"></p>
+
+    <input type="button" value="Вперед >>" id="next_button" onclick="nextToPage()">
+</div>
 
 
 </body>

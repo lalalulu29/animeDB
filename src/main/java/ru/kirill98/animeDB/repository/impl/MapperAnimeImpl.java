@@ -1,4 +1,4 @@
-package ru.kirill98.animeDB.service.impl;
+package ru.kirill98.animeDB.repository.impl;
 
 
 import lombok.RequiredArgsConstructor;
@@ -6,10 +6,10 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import ru.kirill98.animeDB.entity.Anime;
 import ru.kirill98.animeDB.entity.dto.FormAnime;
-import ru.kirill98.animeDB.service.MapperAnime;
+import ru.kirill98.animeDB.repository.MapperAnime;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -51,22 +51,14 @@ public class MapperAnimeImpl implements MapperAnime {
 
     @Override
     public List<Anime> toListAnime(List<FormAnime> listAnime) {
-
         log.info("Start mapping list forms anime from anime");
-        List<Anime> readyListAnime = new ArrayList<>();
-        for (FormAnime anime : listAnime) {
-            readyListAnime.add(toAnime(anime));
-        }
-        return readyListAnime;
+        return listAnime.stream().map(this::toAnime).collect(Collectors.toList());
     }
 
     @Override
     public List<FormAnime> toListFormAnime(List<Anime> listAnime) {
         log.info("Start mapping list anime from forms anime");
-        List<FormAnime> readyListFormAnime = new ArrayList<>();
-        for (Anime anime : listAnime) {
-            readyListFormAnime.add(toFormAnime(anime));
-        }
-        return readyListFormAnime;
+        return listAnime.stream().map(this::toFormAnime).collect(Collectors.toList());
     }
+
 }

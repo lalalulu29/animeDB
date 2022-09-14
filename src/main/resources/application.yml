@@ -3,7 +3,7 @@ spring:
     active: test
 
 anime:
-  maxInOnePage: 10
+  maxInOnePage: 20
 ---
 spring:
   config:

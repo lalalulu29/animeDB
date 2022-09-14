@@ -3,6 +3,7 @@ package ru.kirill98.animeDB.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Builder(toBuilder = true)
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "anime")
 public class Anime {
@@ -45,6 +47,6 @@ public class Anime {
     @Column(name = "description")
     private String description;
 
-    Anime() {}
+//    Anime() {}
 
 }
